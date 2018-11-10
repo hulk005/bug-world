@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let json = '{"key":"VALUE","key2":null,"keyx":12,"keyy":"zhufeng"}';
+        let obj = {"key":"value",key2:undefined,fn:function(){},b:true};
+        console.log(JSON.stringify(obj));
+
+        let obj2 = JSON.parse(json,(key,val)=>{
+            if(typeof val ==='string'){
+                return val[0].toUpperCase() + val.substring(1);
+            }
+            return val;
+        })
+        console.log(obj2);
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // eval 能把字符串以js的方式尽可能运行
+
+        let json = "{'name':'小猪猪'}";
+        // eval('alert(1+1)');
+        // console.log(JSON.parse(json));
+        console.log(eval('('+json+')'));
+        
+        console.log(new Function('a,b','return a+b')(1,2));
+        console.log(new Function('','return'+json)());
+        
+        
+
+    
+    </script>
+</body>
+</html>
