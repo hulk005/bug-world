@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+          []:
+            下标
+            数组
+            放变量或者字符串
+            正则中代表范围中的一个
+
+            [123456] ->其中的一个
+
+
+            [0-9] 数字范围
+            [a-z] 小写字母
+            [A-Z] 大小字母
+            [A-Za-z] 大小写字母
+            [\u4e00-\u9fa5] 中文范围 
+
+            16—130  
+
+            16-19   1[6-9] 
+            20-99   [2-9][0-9]
+            100-129     1[0-2][0-9]
+            130     130
+
+            /^(1[6-9]|[2-9][0-9]|1[0-2][0-9]|130)$/
+
+
+            ^ 开头
+            $ 结尾
+
+            1300 这个字符串中有没有包含正则的匹配项
+            ^1300$ 这个字符串有没有被正则所匹配
+
+
+            [^] 排除括号中的某一项
+
+        */  
+
+        let str = 'a1ba2ba3bafba3ggggba3a4b' ;
+        console.log(str.match(/a[^2]+b/g));
+
+        console.log(str.match(/a[123]b/g));
+        console.log(str.match(/a[1-3]b/g));
+
+        //   16-130    1300 130
+        console.log(/^1[6-9]|[2-9][0-9]|1[0-2][0-9]|130$/.test('131'));
+        
+        
+        
+    </script>
+</body>
+</html>
