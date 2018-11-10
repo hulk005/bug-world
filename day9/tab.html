@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .tab{
+            width:300px;
+            margin: 20px auto;
+        }
+        .tab ul{
+            position: relative;
+            left: 0;
+            top: 1px;
+        }
+        .tab ul li{
+            list-style: none;
+            display: inline-block;
+            margin-right: 20px;
+            padding: 0 10px;
+            border: 1px solid red;
+            
+        }
+        .tab ul li:hover{
+            cursor: pointer;
+            font-weight: bold;
+            color:white;
+            border-bottom: 1px solid white;
+            background: rebeccapurple;
+            z-index: 2;
+        }
+        .tab div{
+            
+            display: none;
+            border: 1px solid red;
+            text-align: center;
+            line-height: 200px;
+            height: 200px;
+        }
+        .tab  div.active{
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="tab" id="box">
+        <ul >
+            <li class="active">标签1</li>
+            <li>标签2</li>
+            <li>标签3</li>
+        </ul>
+        <div class="active">内容一</div>
+        <div>内容二</div>
+        <div>内容三</div>
+    </div>
+    <script src="js/chouseTab.js"></script>
+</body>
+</html>

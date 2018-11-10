@@ -1,0 +1,30 @@
+.tabBox{
+    margin: 20px auto;
+    width:500px;
+}
+.tabBox ul{
+    position: relative;
+    top:1px;
+}
+.tabBox ul li{
+    display: inline-block;
+    margin-right: 10px;
+    padding: 0 10px;
+    line-height: 33px;
+    border: 1px solid #aaa;
+    cursor: pointer;
+}
+.tabBox ul li.active{
+    color:red;
+    font-weight: 600;
+    border-bottom-color: white;
+}
+.tabBox div{
+    display: none;
+    text-align: center;
+    line-height: 148px;
+    border: 1px solid #aaa;
+}
+.tabBox div.active{
+    display: block;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+  <script>
+      /*
+        ie低版本浏览器window下式没有name属性的
+        高版本浏览器window下window是有name的，并且name是字符串
+        当修改了window.name时，会自动调用toString方法（转成字符串）
+
+        跟alert一样，也会调用数据类型的头String方法
+        [1,2,3]  => toString => 1,2,3
+        {name:'xx'} => to String => [object Object]
+      */
+      var arr = [1,2,3];
+      var obj = {name:'xx'};
+      console.log(arr.toString());
+      console.log(obj.toString());
+      alert(obj);
+      alert(arr);
+
+      window.name = obj ;
+      console.log(window.name);
+      
+      
+  </script>
+</body>
+</html>

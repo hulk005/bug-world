@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        closure 闭包
+        */
+        // function fn(a){
+        //     function fn2(){
+        //         a++;
+        //         console.log(a);
+        //     }
+        //     return fn2;
+        // }
+
+        function fn(a){
+            return function(){
+                a++;
+                console.log(a);               
+            };
+        }
+
+        /*
+        1.函数执行
+        2.接受返回值
+        */
+        let f = fn(5);
+        //少一步函数没有被外界引用；等同于单纯函数的函数调用，所以父函数的参数或变量数不会被存储的
+
+        // f(); //6
+        // fn(5)();//6
+
+        console.log(f);
+        f()
+        f()
+       
+        
+    </script>
+</body>
+</html>

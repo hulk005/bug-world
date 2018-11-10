@@ -1,0 +1,38 @@
+*{
+    margin:0;
+    padding:0;
+}
+ul{
+    list-style: none;   
+}
+.box{
+    width: 300px;
+    margin:20px auto;
+}
+.box li{
+    margin:20 auto;
+    padding-left:5px;
+    line-height: 40px;
+    border-bottom: 1px dashed lightgreen;
+    
+    /* 超出一行内容自动裁切以省略号显示  三个条件 缺一不可*/
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* nth-child(n)  当前容器所有子元素的第n个
+        .box li:nth-child(1): 当前容器所有子元素的第1个,并且标签名是li的
+    nth-of-type (n) 先给当前容器按照某一个标签名分组，获取分组中的第一个
+        .box li:nth-of-type (1): 先获取box中所有li；在获取box中的第一个
+*/
+
+
+/* evev 偶数 odd 奇数 */
+.box li:nth-of-type(even){
+    background-color: rgb(249, 253, 215);
+}
+.box li:hover{
+    background: rgb(243, 174, 174);
+    cursor: pointer;
+}

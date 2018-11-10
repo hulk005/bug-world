@@ -1,0 +1,25 @@
+*{
+    margin:0;
+    padding:0;
+}
+ul{
+    list-style: none; 
+}
+.box{
+    width: 300px;
+    margin:20px auto;
+}
+.bgColor{
+    background:rgb(189, 189, 248);
+}
+.box li{
+    margin:20 auto;
+    padding-left:5px;
+    line-height: 40px;
+    border-bottom: 1px dashed lightgreen;
+    
+    /* 超出一行内容自动裁切以省略号显示  三个条件 缺一不可*/
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}

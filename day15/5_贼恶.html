@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         let m = 20;
+    let Fn = function (n, m) {
+        this.n = n;
+        this.aa = function () {
+            console.log(this.n + (++m));
+        }
+    };
+    Fn.prototype.bb = function () {
+        console.log(this.n + m); //10+20
+    };
+
+    Fn.prototype.constructor = 10;
+
+
+    let f1 = new Fn(10, 20);
+  
+    Fn.prototype = {
+        cc: function () {
+            console.log(this.n + m);
+        }
+    };
+    let f2 = new Fn(30);
+    // console.log(f1.constructor);//Fn
+    // console.log(f2.constructor);//Object
+    // console.log(f1.constructor == f2.constructor);//false
+    // f1.aa(); //this.n = 10  + 21   31
+    // f1.bb(); //this.n = 10  + 20   30
+    // f1.cc();//报错
+    // f2.bb();//报错
+    // f2.cc();//this.n=30  m=20  50
+    // f2.__proto__.cc();//NaN //f2.__proto__ === Fn.prototype = {}  this.n=undefined + 20
+
+    // console.dir();
+    // f1.aa();
+
+    </script>
+</body>
+</html>
