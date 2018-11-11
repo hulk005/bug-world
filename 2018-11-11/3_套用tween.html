@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            width:100px;
+            height:100px;
+            background: lightcoral;
+            position: absolute;
+            left: 100px;
+            top:50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script src="tween.js"></script>
+    <script>
+        /*
+            t time 已过时间
+            b begin 起始位置
+            c count 总运动距离
+            d duration 持续时间
+
+            公式  t/d*c+b     已过时间/持续时间*总运动距离 + 起始位置
+        */
+
+        let timer = null;
+        let duration = 5000;
+        let count = 500;
+
+        box.onclick = ()=>{
+            let old = new Date;
+            let begin = parseFloat(getComputedStyle(box).left);
+            count = count -begin;
+
+            timer = setInterval(()=>{
+                let t = new Date - old;
+                if(t>=duration)t = duration;
+                let v = Tween.easeBoth(t, begin, count, duration)
+            box.style.top = v + 'px';
+                if(t === duration){
+                    clearInterval(timer);
+                }
+            },16.7)
+        }
+    </script>
+</body>
+</html>
