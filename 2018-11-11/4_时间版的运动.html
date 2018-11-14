@@ -44,13 +44,12 @@
    var timer = null;
    var duration = 3000;
    var count = 500;
- 
+   
    document.documentElement.onclick = function(){
         var t = 0;
         var begin = parseFloat(getComputedStyle(box).left);
         count = count-begin;
         timer = setInterval(function(){
-            
             t += 16.7;
             if(t >= duration)t = duration;
             box.style.left = t/duration * count + begin + 'px';
