@@ -2,31 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-        div {
-            padding: 100px;
-        }
+<style>
+div{
+    padding:100px;
+}
+#box1{
+    background: red;
+    position: relative;
+   
+}
+#box2{
+    background: yellow;
+    border: 10px solid #000;
+}
+#box3{
+    background: green;
+    position: absolute;
+    border: 10px solid #000;
+}
 
-        #box1 {
-            background: red;
-            position: relative;
-
-        }
-
-        #box2 {
-            background: yellow;
-            border: 10px solid #000;
-        }
-
-        #box3 {
-            background: green;
-            position: absolute;
-            border: 10px solid #000;
-        }
-    </style>
+</style>
 </head>
 <body>
     <div id="box1">
@@ -35,22 +31,42 @@
         </div>
     </div>
 <script>
-    console.log(box3.offsetParent);
+    /*
+        offsetLeft:
+            子元素的左外边框到定位父级的左内边框的距离
 
-    console.log(box3.offsetLeft);
+        offsetTop:
+            子元素的上外边框到定位父级的上内边框的距离
 
-    let obj = box3;
-    let l = 0;
-    let box3L = box3.clientLeft;
+        offsetParent   定位父级
 
-    while (obj) {
+        clientLeft/clientTop
+            元素的左边框/元素的上边框
+
+
+        如果子级没有定位，默认走body
+        
+
+    */
+  //  console.log(box3.offsetParent);
+  //
+  // console.log(box3.offsetLeft);
+  
+  let obj = box3;
+  let l = 0;
+  let box3L = box3.clientLeft;
+  
+  while (obj) {
     l += obj.offsetLeft + obj.clientLeft;
     obj = obj.offsetParent;
-    }
-    l -= box3L;
-    console.log(l);
+    console.log(obj);
+  }
+  l -= box3L;
+  console.log(l);
   
   
+  
+    
 </script>
 </body>
 </html>

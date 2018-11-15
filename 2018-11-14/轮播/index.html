@@ -58,12 +58,8 @@
         <div id="next"></div>
     </div>
     <div id="swiper" style="transition: .3s;">
-        <div><img src="img/banner4.jpg" alt=""></div>
         <div><img src="img/banner1.jpg" alt=""></div>
         <div><img src="img/banner2.jpg" alt=""></div>
-        <div><img src="img/banner3.jpg" alt=""></div>
-        <div><img src="img/banner4.jpg" alt=""></div>
-        <div><img src="img/banner1.jpg" alt=""></div>
     </div>
     <ul id="focus">
         <li class="select"></li>
@@ -73,102 +69,83 @@
     </ul>
 </div>
 <script>
-    var curIndex = 0;
-    var _outer = document.getElementById("outer");
-    var _swiper = document.getElementById("swiper");
-    var timer = null;
-    var _mask = document.getElementById("mask");
-    var _lis = document.getElementById("focus").getElementsByTagName("li");
-
-    for(var i = 0,len = _lis.length; i < len; i++){
-        // _lis[i].curIndex = i;
-        // _lis[i].onclick = function(){
-        //     this.curIndex;
-        //     console.log(this.curIndex);
-        // }
-
-        ;(function(nCurIndex){
-            _lis[nCurIndex].onclick = function(){
-                // this.curIndex;
-                // console.log(curIndex);
-                // nCurIndex
-
-                _swiper.style.marginLeft=-nCurIndex *1000+"px";
-                curIndex = nCurIndex;
-                renderFocus();
-            }
-        })(i);
+    /*
+        banner1-4
+    */
+    const img = document.getElementsByTagName('img');
+    const li = Array.from(document.querySelectorAll('#focus li'));
+    const iW = 1000; 
+    let num = 1;
+    let timer = null;
+    let prev1 = li[0];
+    let onOff = false; //false为没有点
+    next.onclick = function(){
+        if(onOff)return;//如果点过了，就不能让他再点击了
+        onOff = true;
+        //为了下张图片
+        num ++;
+        if(num>4)num=1;
+        //把第二张图片换成下一张
+        img[1].src = 'img/banner'+ num +'.jpg';
+        //改变swiper的位置
+        swiper.style.left = -iW + 'px';
+        //把上一次class清空
+        prev1.className = '';
+        //把当前的class添加select
+        li[num-1].className = 'select';
+        //这个定时器是当swiper到了-1000的位置之后干的事情（这里设置的310ms，是因为transition是.3s）
+        setTimeout(()=>{
+            //把第一张变成第2张，只要第一张和第二张的图片一样，快速拉回才看不出来
+            img[0].src = 'img/banner'+ num +'.jpg';
+            //把transition清掉，没有过度动画
+            swiper.style.transition = '';
+            //快速拉回
+            swiper.style.left = 0;
+            //拉回了之后，迅速添加swiper的动画，为了下次运动使用
+            setTimeout(()=>{
+                swiper.style.transition = '.3s';
+                //再把这次的li变成，下一次的上一次。
+                prev1 = li[num-1];
+                onOff = false;
+            },30);
+        },310);
     }
 
-    // 鼠标滑到按钮上
-    _outer.onmouseover = function(){
-        // alert(123)
-        // 移出定时器
-        clearInterval(timer);
-    }
-    // 鼠标一开始重新开始轮播
-    _outer.onmouseout = function(){
-        // alert(123)
-        // 移出定时器
-        timer = setInterval(function (){
-            curIndex++;
-            if(curIndex > 3){
-                curIndex = 0
-            }
-            _swiper.style.marginLeft=-curIndex *1000+"px";
-            renderFocus();
-        }, 1000);
-    }
-
-    // 点击按钮
-    _mask.onclick = function(e){
-        // e是事件对象
-        // e.target 是事件源
-        var _id = e.target.id; // id为prev curIndex++, id为next currentIndex--;
-
-        if(_id == "prev"){
-            curIndex++;
-
-            if(curIndex > 3){
-                curIndex = 0;
-            }
-        }else if(_id == "next"){
-            curIndex--;
-
-            if(curIndex < 0){
-                curIndex = 3;
-            }
+    /*
+        点击点点
+    */
+    li.forEach((e,i)=>{
+        e.onclick = function(){
+            if(num === i+1)return;
+            img[1].src = 'img/banner'+ (i+1) +'.jpg';
+            swiper.style.left = -iW + 'px';
+            prev1.className = '';
+            li[i].className = 'select';
+            setTimeout(()=>{
+                img[0].src = 'img/banner'+ (i+1) +'.jpg';
+                swiper.style.transition = '';
+                swiper.style.left = 0;
+                setTimeout(()=>{
+                    swiper.style.transition = '.3s';
+                    prev1 = li[i];
+                    onOff = false;
+                    num = i+1;
+                },30);
+            },310);
         }
-        // console.log(e.target.id)
+    });
 
-        _swiper.style.marginLeft=-curIndex *1000+"px";
-        renderFocus();
-    }
+   
 
-    // 定时器setInterval
-    timer = setInterval(function (){
-        curIndex++;
-        if(curIndex > 3){
-            curIndex = 0
-        }
-        _swiper.style.marginLeft=-curIndex *1000+"px";
-        renderFocus();
-    }, 1000);
+    // timer = setInterval(next.onclick,3000);
 
-    // curIndex
-    function renderFocus(){
-        //console.log(curIndex) 
-        
-        for(var i = 0, len = _lis.length; i < len;i++){
-            // _lis[i]
+    // outer.onmouseover = function(){
+    //     clearInterval(timer);
+    // }
+    // outer.onmouseout = function(){
+    //     timer = setInterval(next.onclick,3000);
+    // }
 
-            if(i == curIndex){
-                _lis[i].className = "select";
-            }else{
-                _lis[i].className = "";
-            }
-        }
-    }
 
 
 

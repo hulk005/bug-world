@@ -2,42 +2,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
 <body>
-    <script>
-        /*
-        string.replace('' || 正则，''||callback)
-            返回：新的字符串
+<script>
+    /*
+        string.replace(''||正则,''||callback);
 
-            替换：把第一个参数替换成第二个参数
+            返回:新的字符串
 
-            callback:
-                正则没匹配到一次字符串就点用一次函数并且把匹配到的字符串放进去
-        
-        |  ||   或者的意思
-        */
-        let str = '毒液上映了';
-        // console.log(str.replace('毒液','猪猪侠的天敌'));
-        // console.log(str.replace(/毒液|了/g,'猪猪侠的天敌'));
-
-        let s = str.replace(/毒液|了/g,function($0,$1,$2,$3){
-            console.log($1,$2,$3); //index,input,undefined
-
-            return $0 == '了'?'鸟':'猪猪侠的天敌';
-            
-        })
-        console.log(s);
-        
+            替换:把第一个参数替换第二个参数
 
 
+            callback：
+                正则每匹配到一次字符串就调用一次函数并且把匹配到的字符串放进去
 
 
-    //    // 25-120 范围 
-    //   console.log( (/^[2-9][5-9]|1[0-1][0-9]|120$/).test(1200));
-      
-    </script>
+        | 或者  ||
+    */
+
+   let str = '毒液上映了';
+    //console.log(str.replace('毒液','小蛛蛛的天敌'));
+    // console.log(str.replace(/毒液|了/g,'小蛛蛛的天敌'));
+
+    let s = str.replace(/毒液|了/g,function($0,$1,$2,$3){
+        console.log($1,$2,$3);//index,input,undefined
+        return $0=='了'?'鸟':'小蛛蛛的天敌';
+    });
+
+    console.log(s);
+
+    
+
+
+
+
+
+
+
+
+
+</script>
 </body>
 </html>
