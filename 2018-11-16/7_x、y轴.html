@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 0;
+            left:0;
+            background: lightcoral;
+            cursor:move;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+    //ev.clientX/ev.clientY 鼠标到可视区的x轴、y轴  基于可视区的
+    //ev.pageX/ev.pageY  鼠标到可视区的x轴、y轴   基于页面的
+
+        // document.onclick = function(ev){
+        //     console.log(ev);
+        // }
+
+        document.onmouseover = function(ev){
+            console.log(ev.pageY,ev.clientY);
+            box.style.left = ev.clientX - box.offsetWidth/2+'px';
+            box.style.top = ev.clientY - box.offsetHeight/2 + 'px';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+        list-style: none;
+    }
+    ul{
+        position:absolute;
+        left:0;
+        top:0;
+        display:none;
+        border:4px solid deeppink;
+        border-radius: 10px;
+    }
+    ul li:first-child{
+        font-weight: 1000;
+        font-size: 18px;
+    }
+    li{
+        text-align: center;
+        line-height: 36px;
+        padding: 16px 20px;
+    }
+    /* h3:hover{
+        background: rgb(202, 162, 248);
+        color:rgb(255, 255, 255);
+        font-size: 18px;
+        font-weight: 700;
+        cursor: pointer;
+    } */
+    li:hover{
+        background: rgb(202, 162, 248);
+        color:rgb(255, 255, 255);
+        /* font-size: 18px; */
+        font-weight: 700;
+        cursor: pointer;
+    }
+    </style>
+</head>
+<body>
+    <ul id="ul">
+        <li data-index="0">《木兰词·拟古决绝词柬友》</li>
+        <li data-index="1">人生若只如初见,__________________.</li>
+        <li data-index="2">等闲变却故人心,__________________.</li>
+        <li data-index="3">骊山语罢清宵半,__________________.</li>
+        <li data-index="4">何如薄幸锦衣郎,__________________.</li>   
+    </ul>
+    <script>
+        window.oncontextmenu = function(ev){
+            ul.style.left = ev.pageX + 'px';
+            ul.style.top = ev.pageY + 'px';
+            ul.style.display = 'block';
+            return  false;
+        }
+
+        let arr = ['【作者】纳兰性德 【朝代】清','何事秋风悲画扇','却道故人心易变','泪雨零铃终不怨','比翼连枝当日愿'];
+
+        ul.onmousedown = function(ev){
+            if(ev.target.nodeName === 'LI'){
+                alert(arr[ev.target.dataset.index]);
+                ev.cancelBubble = true;
+            }
+        }
+
+        document.onmousedown = function(){
+            ul.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

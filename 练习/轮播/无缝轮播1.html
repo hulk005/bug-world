@@ -103,6 +103,26 @@
         },310)
     };
 
+    prev.onclick = function(){
+        num++;
+        if(num>4) num=1;
+
+        img[1].src = 'img/banner'+ num +'.jpg';
+        swiper.style.left = iw + 'px';
+        prev1.className = '';
+        li[num-1].className = 'select';
+        setTimeout(()=>{
+            img[0].src= 'img/banner'+ num +'.jpg';
+            swiper.style.transition = '';
+            swiper.style.left = 0;
+            setTimeout(()=>{
+                swiper.style.transition = '.3s';
+                prev1 = li[num-1];
+                onOff = false;
+            },30)
+        },310)
+    };
+    
    
     
 
@@ -131,7 +151,7 @@
 
 
 
-    timer = setInterval(next.onclick,3000);
+    timer = setInterval(next.onclick,1000);
     console.log(next.onclick);
 
     outer.onmouseover = function(){
@@ -139,7 +159,7 @@
     }
 
     outer.onmouseout = function(){
-        timer=setInterval(next.onclick,3000)
+        timer=setInterval(next.onclick,1000)
     }
 
 

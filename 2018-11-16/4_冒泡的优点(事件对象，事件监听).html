@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    li{
+        border: 1px solid deeppink;
+
+    }
+    ul{
+        border:2px solid darkorange;
+    }
+    </style>
+</head>
+<body>
+    <ul id="ul">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        
+    </ul>
+    <script>
+    const lis = Array.from(document.getElementsByTagName('li'));
+
+    // lis.forEach(e=>{
+    //     e.onclick = function(){
+    //         ul.style.background = 'green';
+    //     }
+    // })
+
+
+    // ul.onclick = function(){
+    //     this.style.background = 'red';
+    // }
+
+
+    //   lis.forEach(e=>{
+    //       e.onclick = function(){
+    //           this.style.background = 'green';
+    //       }
+    //   })
+
+     
+
+
+      ul.onclick = function(ev){
+          console.dir(ev);
+          console.dir(window.event);
+        //   console.log(ev.target);
+          if(ev.target.nodeName === 'LI'){
+              ev.target.style.background = 'blue';
+          }
+      }
+    </script>
+</body>
+</html>

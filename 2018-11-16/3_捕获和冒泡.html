@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    div{
+        padding:100px;
+    }
+    #div1{
+        background: rgb(93, 176, 209);
+    }
+    #div2{
+        background: lightblue;
+    }
+    </style>
+</head>
+<body>
+    <div id="div1">
+        <div id="div2">
+            <button id="btn">点击</button>
+        </div>
+    </div>
+    <script>
+    div1.onclick = function(){
+        alert('lawngreen');
+    }
+    div2.onclick = function(){
+        alert('lightblue');
+    }
+    btn.onclick = function(){
+        alert('button');
+    }
+    </script>
+</body>
+</html>
