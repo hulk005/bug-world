@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    #box{
+        width: 100px;
+        height:360px;
+        background:lightgray;
+    }
+    </style>
+</head>
+<body>
+    <button id="btn">按钮</button>
+    <div id="box"></div>
+    <script>
+        let onOff = true;
+    btn.onclick = function(ev){
+        if(onOff){
+            box.style.display = 'none';
+        }else{
+            box.style.display = 'block';
+        }
+        onOff = !onOff
+        console.dir(ev);
+
+        // ev.stopPropagation();//阻止了btn的onclick的事件不往上冒泡
+        ev.cancelBubble = true;//阻止了btn的onclick的事件不往上冒泡
+
+        
+    }
+
+    document.onclick = function(){
+        box.style.display = 'none';
+        onOff = false;
+    }
+    </script>
+</body>
+</html>
