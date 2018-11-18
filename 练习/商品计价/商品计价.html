@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <ul id="list">
+        <li>樱桃<br>
+            <input type="button" value="-" />
+            <strong>0</strong>
+            <input type="button" value="+" />
+            单价：<em>12.5元</em>
+            小计：<span>0元</span>
+        </li>
+        <li>香蕉<br>
+            <input type="button" value="-" />
+            <strong>0</strong>
+            <input type="button" value="+" />
+            单价：<em>2.5元</em>
+            小计：<span>0元</span>
+        </li>
+        <li>火龙果<br>
+            <input type="button" value="-" />
+            <strong>0</strong>
+            <input type="button" value="+" />
+            单价：<em>8.5元</em>
+            小计：<span>0元</span>
+        </li>
+        <li>榴莲<br>
+            <input type="button" value="-" />
+            <strong>0</strong>
+            <input type="button" value="+" />
+            单价：<em>28元</em>
+            小计：<span>0元</span>
+        </li>
+        <li>车厘子<br>
+            <input type="button" value="-" />
+            <strong>0</strong>
+            <input type="button" value="+" />
+            单价：<em>14.5元</em>
+            小计：<span>0元</span>
+        </li>
+        <li>菠萝<br>
+            <input type="button" value="-" />
+            <strong>0</strong>
+            <input type="button" value="+" />
+            单价：<em>7元</em>
+            小计：<span>0元</span>
+        </li>
+    </ul>
+    <p>
+        商品合计共：<em>0件</em>，共花费了：<em>0元</em><br />
+        其中最贵的商品单价是：<strong>0元</strong>
+    </p>
+<script>
+    // window.onload = function () {
+        // var oP = document.getElementsByTagName('p')[0];
+        // var aEm = oP.getElementsByTagName('em');
+        // var aStrong = oP.getElementsByTagName('strong')[0];
+
+        var oUl = document.getElementById('list');
+        var oLi = oUl.getElementsByTagName('li');
+        // var oStrong = oUl.getElementsByTagName('strong');
+        // var oSpan = oUl.getElementsByTagName('span');
+        // var oEm = oUl.getElementsByTagName('em');
+
+    //     var sum = 0;
+    //     var emMax = 0;
+    //     // for (var i = 0; i < oEm.length; i++) {
+        //     //最大的那个单价值
+        //     if (parseFloat(oEm[i].innerHTML) > emMax) {
+        //         emMax = parseFloat(oEm[i].innerHTML);
+        //     }
+        //     aStrong.innerHTML = emMax + '元';
+        // }
+
+
+        //调用fn1（）函数实现商品数量的选取
+        for (var i = 0; i < oLi.length; i++) {
+            fn1(oLi[i]);
+        }
+
+        //添加点击事件获取总的商品数量
+        // aEm[0].onclick = function () {
+        //     for (var i = 0; i < oStrong.length; i++) {
+        //         var a = Number(oStrong[i].innerHTML);
+        //         sum += a;
+        //         aEm[0].innerHTML = sum + '件';
+        //     }
+        //     sum = 0;
+        // }
+
+        //添加点击事件获取总的价钱
+        // aEm[1].onclick = function () {
+        //     for (var i = 0; i < oSpan.length; i++) {
+        //         var a = parseFloat(oSpan[i].innerHTML);
+        //         sum += a;
+        //         aEm[1].innerHTML = sum + '元';
+        //     }
+        //     sum = 0;
+        // }
+
+
+        function fn1(aLi) {
+            var oBtn = aLi.getElementsByTagName('input');
+            var oStrong = aLi.getElementsByTagName('strong')[0];
+            console.log(oStrong);
+            
+            var oEm = aLi.getElementsByTagName('em')[0];
+            var oSpan = aLi.getElementsByTagName('span')[0];
+            var n1 = Number(oStrong.innerHTML);
+            var n2 = parseFloat(oEm.innerHTML);
+
+
+            oBtn[0].onclick = function () {
+                n1--;
+                if (n1 < 0) {
+                    n1 = 0;
+                }
+                oStrong.innerHTML = n1;
+                oSpan.innerHTML = n1 * n2 + '元';
+            };
+            oBtn[1].onclick = function () {
+                n1++;
+                oStrong.innerHTML = n1;
+                oSpan.innerHTML = n1 * n2 + '元';
+            };
+        }
+    // }
+</script>
+
+</body>
+
+</html>
