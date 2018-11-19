@@ -97,7 +97,7 @@
 		let danjia = li.getElementsByTagName('strong')[0];
 		let xiaoji = li.getElementsByTagName('strong')[1];
 
-		let n = +(_em.innerHTML);
+		let n = Number(_em.innerHTML);
 		let m = parseFloat(danjia.innerHTML);
 
 		btns[0].onclick = function(){
@@ -113,8 +113,24 @@
 
 		_em.innerHTML = n;
 		xiaoji.innerHTML = n*m + '元';	
+		
+		
+		ems[0] = '';
+		ems[0].innerHTML += Number(_em.innerHTML);
+		console.log(n);
+		
 		}
 	}	
+
+
+	let bottom = document.getElementById('info');
+	let spans = bottom.getElementsByTagName('span');
+	let ems = bottom.getElementsByTagName('em');
+
+	// ems.onclick = function(){
+
+	// }
+	
 			
 	
 		
