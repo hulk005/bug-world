@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            font-size: 14px;
+        }
+        ul{
+            width:200px;
+            border: 1px dotted rgb(180, 180, 180);
+            display:none;
+        }
+        li{
+            list-style: none;
+        }
+        li.active{
+            background: silver;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="txt">
+    <ul id="ul">
+
+    </ul>
+
+    <script>
+        let arr = ['china good!!!','十字路口的中国引领','携手共建中国声音','被抓时正在医院就诊','uc公关部跪了喜大普奔'];
+        let temp = '';
+        arr.forEach((e,i)=>{
+            temp += `<li class='${i==0?'active':''}'>${e}</li>`;
+        });
+        ul.innerHTML = temp;
+
+        let lis = Array.from(document.getElementsByTagName('li'));
+        let li = lis[0];
+
+
+        lis.forEach((e,i)=>{
+            e.onclick = function(){
+                li.className = '';
+                lis[i].className = 'active';
+                li = lis[i];
+                num = i;
+                txt.value = li.innerHTML;
+                ul.style.display = 'none';
+            
+            }
+
+        });
+        
+        txt.onfocus = function(){
+            ul.style.display = 'block';
+        }
+    
+   
+
+
+        let num = 0;
+        txt.onkeyup = function(ev){
+            switch(ev.keyCode){
+                case 38:
+                    num--;
+                    if(num < 0){
+                        num = arr.length - 1;
+                    }
+                    li.className = '';
+                    lis[num].className = 'active';
+                    li = lis[num];
+                    break;
+           
+                case 40:
+                    num++;
+                    num %= arr.length;
+                    li.className = '';
+                    lis[num].className = 'active';
+                    li = lis[num];
+                    break;
+                case 13:
+                    this.value = li.innerHTML;
+                    ul.style.display = 'none';
+                    this.blur();
+                    break;
+                
+            }
+        }
+    </script>
+</body>
+</html>
