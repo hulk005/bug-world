@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 100vw;
+            height:100vh;
+        }
+        body{
+            position: relative;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body id="body">
+
+<script>
+    function myWheel(obj,fn){
+        if(window.onmousewheel === undefined){
+            obj.addEventListener('DOMMouseScroll',move);
+        }else{
+            obj.addEventListener('mousewheel',move);
+        }
+        
+        function move(ev){
+            let o = false;
+            if(ev.wheelDelta){
+                o = ev.wheelDelta > 0 ? true : false;    
+            }else{
+                o = ev.detail < 0 ? true : false;
+                console.log(ev.wheelDelta);   
+            }
+            fn(o);
+        }
+    }
+
+    //chrome 滚轮数值
+    // document.onmousewheel = function(ev){
+    //     console.log(ev.wheelDelta);
+    // }
+  
+    //FF滚轮数值
+    // window.addEventListener('DOMMouseScroll',function(ev){
+    //     console.log(ev.detail);
+    // })
+
+    let color = ['pink','orange','green','skyblue','yellow'];
+
+    let temp = '';
+    color.forEach(e=>{
+        temp += `<div style="background:${e}"></div>`
+    });
+    body.innerHTML = temp;
+
+    let iH = window.innerHeight;
+    let num = 0;
+    let onOff = false;
+
+    myWheel(window,function(oo){
+        if(onOff)return;
+        onOff = true;
+        if(oo){
+            num--;
+            if(num<0) num = 0;
+        }else{
+            num++;
+            if(num > color.length-1) num = color.length - 1;
+        }
+        body.style.transition = '1s';
+        body.style.top = - num * iH + 'px';
+        setTimeout(function(){
+            onOff = false;
+        },1000)
+    })
+
+</script>
+    
+</body>
+</html>
