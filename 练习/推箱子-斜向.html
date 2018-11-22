@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 100px;
+            height:100px;
+            background: red;
+            position:absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+
+        // let timer = null;
+        // let obj = {
+        //     37:false,
+        //     38:false,
+        //     39:false,
+        //     40:false
+        // };
+
+        // let onOff = false;
+        // let num = 0;
+        // window.onkeydown = function(ev){
+        //     obj[ev.keyCode] = true;
+        //     if(onOff)return;
+        //     onOff = true;
+        //     move();
+        // }
+
+        // window.onkeyup = function(ev){
+        //     obj[ev.keyCode] = false;
+        //     for(let attr in obj){
+        //         num+= obj[attr]
+        //     }
+        //     if(!num){
+        //         cancelAnimationFrame(timer);
+        //         onOff = false;
+        //     }
+        // }
+
+        // function move(){
+        //     console.log(1);
+            
+        //     ;(function animate(){
+        //         timer = requestAnimationFrame(animate);
+              
+                
+        //         if(obj[37]){
+        //             box.style.left = box.offsetLeft - 5 + 'px';
+        //             console.log('2');
+        //         }
+        //         if(obj[38]){
+        //             box.style.top = box.offsetTop - 5 + 'px';
+        //         }
+        //         if(obj[39]){
+        //             box.style.left = box.offsetLeft + 5 + 'px';
+        //         }
+        //         if(obj[40]){
+        //             box.style.top = box.offsetTop + 5 + 'px';
+        //         }
+        //     })();
+        // }
+
+
+//定时器
+    let timer = null;
+    let obj = {
+        37:false,
+        38:false,
+        39:false,
+        40:false
+    };
+
+    let onOff = false;
+    let num = 0;
+    
+    window.onkeydown = function(ev){
+        obj[ev.keyCode] = true;
+        if(onOff)return;
+        onOff = true;
+        timer();
+    }
+    window.onkeyup = function(ev){
+        obj[ev.keyCode] = false;
+        for(let attr in obj){
+            num += obj[attr]
+        }
+        if(!num){
+            onOff = false;
+            clearInterval(timer);
+          
+        }
+       
+    }
+    timer = setInterval(function(){
+        if(obj[37]){
+            box.style.left = box.offsetLeft - 5 + 'px';
+        }
+        if(obj[38]){
+            box.style.top = box.offsetTop - 5 + 'px';
+        }
+        if(obj[39]){
+            box.style.left = box.offsetLeft + 5 + 'px';
+        }
+        if(obj[40]){
+            box.style.top = box.offsetTop + 5 + 'px';
+        }
+        console.log(obj);
+    },16.7);
+    </script>
+</body>
+</html>
