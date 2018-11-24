@@ -54,6 +54,11 @@ function render(data){
     return temp;
 }
 oUl.innerHTML = render(data);
+console.log(oUl);
+
+
+
+
 
 let lis = document.getElementsByTagName('li');
 
