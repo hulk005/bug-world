@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+<script>
+    (function(global,factory){
+        factory(global);
+    })(typeof window !== 'undefined'?window:this,function(global,noGlobal){
+        function JQuery(selector){
+            return new Ph(selector);
+        }
+        let fn = JQuery.prototype = {
+            constructor:JQuery,
+            html:function(temp){
+                for(let i=0;i<this.length;i++){
+                    this[i].innerHTML = temp;
+                }
+            }
+        }
+        JQuery.trim = function(str){
+            return str.replace(/(^\s+)|(\s+$)/g,'');
+        }
+        JQuery.type = function(data,dataType){
+            let toStr = Object.prototype.toString;
+            return toStr.call(data) === `[object ${dataType[0].toUpperCase() + dataType.substring(1).toLowerCase()}]`
+        }
+        function Ph(selector){
+            if(selector.nodeType === 1){
+                return selector;
+            }
+            if(typeof selector === 'string'){
+                let ele = document.querySelectorAll(selector);
+
+                for(let i=0;i<ele.length;i++){
+                    this[i] = ele[i];
+                }
+                this.length = ele.length;
+            }else if(typeof selector === 'function'){
+                document.addEventListener('DOMContentLoaded',function(){
+                    selector();
+                })
+            }
+        }
+        Ph.prototype = fn;
+        global.$ = global.JQuery = JQuery;
+    })
+
+    console.log($.trim('      135      '));
+    console.log($.type('','string'));
+
+    // $('#box').html('<p>hehehda</p>');
+    $('li').html('插入li内容');
+
+    console.log($('#box'));
+    
+    
+</script>
+</body>
+</html>

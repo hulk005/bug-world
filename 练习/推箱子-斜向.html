@@ -6,117 +6,94 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
+        *{
+            margin: 0;
+            padding: 0
+        }
+        body{
+            overflow: hidden;
+            position: relative;
+            left: 0;
+            top: 0;
+        }
         #box{
             width: 100px;
             height:100px;
-            background: red;
+            background: rgba(red, green, blue,0.1);
             position:absolute;
-            left: 0;
-            top: 0;
+            left: 50%;
+            bottom: 0;
+        }
+        img{
+            width: 100px;
+            height: 100px;
+        }
+        .bg{
+            width: innerWidth;
+            height: 722px;
+            background: black;
         }
     </style>
 </head>
 <body>
-    <div id="box"></div>
-    <script>
+    <div class="bg">
+        <div id="box">
+        <img src="./tank-green.png" id="tank" alt="">
+    </div>
+<script>
 
-        // let timer = null;
-        // let obj = {
-        //     37:false,
-        //     38:false,
-        //     39:false,
-        //     40:false
-        // };
+        //定时器
+        let timer = null;
+        let obj = {
+            37:false,
+            38:false,
+            39:false,
+            40:false
+        };
 
-        // let onOff = false;
-        // let num = 0;
-        // window.onkeydown = function(ev){
-        //     obj[ev.keyCode] = true;
-        //     if(onOff)return;
-        //     onOff = true;
-        //     move();
-        // }
-
-        // window.onkeyup = function(ev){
-        //     obj[ev.keyCode] = false;
-        //     for(let attr in obj){
-        //         num+= obj[attr]
-        //     }
-        //     if(!num){
-        //         cancelAnimationFrame(timer);
-        //         onOff = false;
-        //     }
-        // }
-
-        // function move(){
-        //     console.log(1);
+        let onOff = false;
+        let num = 0;
+        
+        window.onkeydown = function(ev){
+            obj[ev.keyCode] = true;
+            if(onOff)return;
+            onOff = true;
+            timer();
+            console.log(timer)
+        }
+        window.onkeyup = function(ev){
+            obj[ev.keyCode] = false;
+            for(let attr in obj){
+                num += obj[attr]
+                box.style.transform = 'rotate(0deg)';
+            }
+            if(!num){
+                onOff = false;
+                clearInterval(timer);
             
-        //     ;(function animate(){
-        //         timer = requestAnimationFrame(animate);
-              
-                
-        //         if(obj[37]){
-        //             box.style.left = box.offsetLeft - 5 + 'px';
-        //             console.log('2');
-        //         }
-        //         if(obj[38]){
-        //             box.style.top = box.offsetTop - 5 + 'px';
-        //         }
-        //         if(obj[39]){
-        //             box.style.left = box.offsetLeft + 5 + 'px';
-        //         }
-        //         if(obj[40]){
-        //             box.style.top = box.offsetTop + 5 + 'px';
-        //         }
-        //     })();
-        // }
-
-
-//定时器
-    let timer = null;
-    let obj = {
-        37:false,
-        38:false,
-        39:false,
-        40:false
-    };
-
-    let onOff = false;
-    let num = 0;
-    
-    window.onkeydown = function(ev){
-        obj[ev.keyCode] = true;
-        if(onOff)return;
-        onOff = true;
-        timer();
-    }
-    window.onkeyup = function(ev){
-        obj[ev.keyCode] = false;
-        for(let attr in obj){
-            num += obj[attr]
+            
+            }
+        
         }
-        if(!num){
-            onOff = false;
-            clearInterval(timer);
-          
-        }
-       
-    }
-    timer = setInterval(function(){
-        if(obj[37]){
-            box.style.left = box.offsetLeft - 5 + 'px';
-        }
-        if(obj[38]){
-            box.style.top = box.offsetTop - 5 + 'px';
-        }
-        if(obj[39]){
-            box.style.left = box.offsetLeft + 5 + 'px';
-        }
-        if(obj[40]){
-            box.style.top = box.offsetTop + 5 + 'px';
-        }
-        console.log(obj);
-    },16.7);
+        timer = setInterval(function(){
+            if(obj[37]){
+                box.style.left = box.offsetLeft - 5 + 'px';
+                box.style.transform = 'rotate(-90deg)';
+            }
+            if(obj[38]){
+                box.style.top = box.offsetTop - 5 + 'px';
+                box.style.transform = 'rotate(0deg)';
+            }
+            if(obj[39]){
+                box.style.left = box.offsetLeft + 5 + 'px';
+                box.style.transform = 'rotate(90deg)';
+            }
+            if(obj[40]){
+                box.style.top = box.offsetTop + 5 + 'px';
+                box.style.transform = 'rotate(180deg)';
+            }
+            console.log(obj);
+        },16.7);
     </script>
 </body>
 </html>

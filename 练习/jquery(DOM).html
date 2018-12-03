@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">点击</button>
+    <ul id="ul">
+
+    </ul>
+    <script src="./jquery-3.2.1.min.js"></script>
+    <script>
+        let num = 0;
+        $('#btn').click(function(){
+            num ++;
+            let $li = $('<li><span>'+ num +'</span> <input n='+ num +' style="display:none" value="'+ num +'" type="text"><a rm href="javascript:;">删除</a><a rn href="javascript:;">修改</a></li>');
+            $li.on('click','a[rm]',function(){
+                $li.remove();
+            })
+
+            let $txt = $li.find('input');
+            console.log('input');
+            
+            let $span = $li.find('span');
+            $li.on('click','a[rn]',function(){
+                $txt.show();
+                $span.hide();
+                $txt.focus();
+                $txt[0].selectionStart = $txt.val().length;
+            });
+
+            $txt.blur(function(){
+                if(!$(this).val()){
+                    $(this).val($(this).attr('n'));
+                }else{
+                    $span.html($(this).val());
+                    $(this).attr('n',$(this).val());
+                }
+                $span.show();
+                $(this).hide();
+            })
+            if($('li:first').length){
+                $('li:first').before($li);
+            }else{
+                $('#ul').append($li);
+            }
+        })
+    </script>
+</body>
+</html>
