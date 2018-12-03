@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        
+      document.addEventListener('上滚',function(ev){
+          console.log(ev);
+          alert('上滚');        
+      })
+
+      var event = document.createEvent('HTMLEvents');
+      event.initEvent('上滚',true,true);
+
+      event.name = 'xxx';
+      event.num = 0;
+
+      document.onmousewheel = function(ev){
+          if(ev.wheelDelta > 0){
+              event.num = ++ event.num;
+              document.dispatchEvent(event);
+          }
+      }
+
+    </script>
+</body>
+</html>

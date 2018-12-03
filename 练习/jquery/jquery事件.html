@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 100px;
+            height: 100px;
+            background: aqua;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">点击</button> 
+    <div id="box"></div>
+    <script src="./jquery-3.2.1.min.js"></script>
+    <script>
+        $('#btn').click(function(){
+            $('#box').off('click.就是你');
+        })
+
+        $('#box').click(function(){
+            alert(1);
+        })
+        $('#box').on('click.就是你',function(){
+            alert(2);
+        })
+    </script>
+</body>
+</html>

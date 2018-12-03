@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box"></div>
+    <script src="./jquery-3.2.1.min.js"></script>
+    <script>
+        let arr = [1111,2222,3333];
+
+        arr.forEach(e=>{
+            let $btn = $('<button>按钮</button>');
+            $btn.on('click',{e},function(ev){
+                let $p = $('<p></p>');
+                let nr = ev.data.e
+                console.log(ev.data.e)
+
+                $('#box').append($p);
+                $('p').html(nr);
+            })
+            $('#box').append($btn);
+        })
+
+    </script>
+</body>
+</html>

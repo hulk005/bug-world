@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">按钮一</button>
+    <button id="btn2">按钮二</button>
+    <script src="./jquery-3.2.1.min.js"></script>
+    <script>
+        
+       function add(ele,evName,fn){
+           ele.diy = ele.diy || {};
+           ele.diy[evName] = ele.diy[evName] || [];
+           ele.diy[evName].push(fn)
+       }
+
+       function trigger(ele,evName){
+           if(!ele.diy[evName])return null;
+           ele.diy[evName].forEach(fn => {
+               fn.call(ele);
+           });
+       }
+
+       function off(ele,evName,fnName){
+           if(!ele.diy[evName])return null;
+           for(let i=0;i<ele.diy[evName].length;i++){
+               if(ele.diy[evName][i].name === fnName.name){
+                   ele.diy[evName].splice(i,1);
+                   i--;
+               }
+           }
+       }
+
+       add(btn,'点击',function(){
+           console.log(this);
+           
+       });
+
+       add(btn,'点击',fn);
+       function fn(){
+           alert(2);
+       }
+
+       btn2.onclick = function(){
+           off(btn,'点击',fn);
+           console.log(btn.diy['点击']);   
+       }
+
+       btn.onmousedown = function(ev){
+           let x = ev.pageX;
+           let y = ev.pageY;
+           btn.onmouseup = function(ev){
+               if(Math.abs(ev.pageX - x) < 5 && Math.abs(ev.pageY - y) < 5){
+                   trigger(btn,'点击')
+               }
+           }
+       }
+
+    </script>
+</body>
+</html>
