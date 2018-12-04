@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .ok {
+            border: 1px solid green;
+        }
+
+        .error {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    用户名:<input type="text"  id="txt"/>
+    <input type="button" value="提交" id="btn">
+    <script>
+        btn.onclick = function(){
+            let xhr = new XMLHttpRequest;
+            xhr.open('get','/get?user='+txt.value.true);
+            xhr.send();
+            xhr.onload = function(){
+                let data = JSON.parse(xhr.responseText);
+
+                if(data.code == 0){
+                    txt.className = 'error';
+                }else if(data.code ==1){
+                    txt.className = 'ok';
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
